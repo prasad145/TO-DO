@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block titl %}
+    <title>TO-DO</title>
+{% endblock %}
+
+{% block styleblock %}
+{% endblock %}
+
+{% block content %}
+    <h3 class = "subhead"><u>Tasks</u>:  </h3>
+    <div class="content-block">
+        {% set count = [] %}
+        {% for item in data %}
+        {% if item.status == 0 %}
+            {% if count.append(1) %} {% endif %}
+            <div class="flex-container">
+                <a class = "task-block" style = "flex-grow: 9;" href="/edit/{{item.id}}">
+                    <div class="take-title">{{item.title}}</div>
+                    <div class="task-date">{{item.date.strftime("%d-%m-%Y")}}</div>
+                    <div class= "task-content">{{item.task}}</div>
+                </a>
+                <a class = "done-button" href="/done/{{item.id}}">
+                    <div>DONE</div>
+                </a>
+            </div>
+        {% endif %}
+        {% endfor %}
+            {% if count|length %}
+            {% else %}
+                <h3 class="empty">---EMPTY---</h3>
+                <hr>
+            {% endif %}    
+    </div>
+    <h3 class="subhead" style="margin-top: 15px;"><u>Finished Tasks</u>:</h3>
+    <div class = "content-block">
+        {% set count = [] %}
+        {% for item in data %}
+            {% if item.status == 1 %}
+                {% if count.append(1) %} {% endif %}
+                <h3 class="task-done"><strike>{{item.title}}</strike></h3>
+            {% endif %}
+        {% endfor %}
+        {% if count|length %}
+        {% else %}
+            <h3 class="empty">---EMPTY---</h3>
+            <hr>
+        {% endif %}
+    </div>
+    <a class = "addnew-button" href="/new"></a>
+{% endblock %}

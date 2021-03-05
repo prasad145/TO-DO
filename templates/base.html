@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block titl %} {% endblock %}
+    <style>
+        .title-block
+        {
+            display: block;
+            background-color:#7952b3 ;
+            font-size: 1.3rem;
+            font: bolder;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+            padding: 1px;
+            margin-top: 7px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .title-block h1
+        {
+            margin: 10px;
+        }
+
+        @media (max-width: 700px)
+        {
+            .title-block
+            {
+                font-size: 1em;
+                padding: 7px;
+            }
+
+            body
+            {
+                padding: 7px;
+            }
+        }
+
+        body
+        {
+            max-width: 700px;
+            margin: auto;
+        }
+        {% block styleblock %} {% endblock %}
+    </style>
+  </head>
+  <body>
+    <div class="title-block">
+      <h1>TO-Do List</h1>
+    </div>
+    {% block content %} {% endblock %}
+  </body>
+</html>
